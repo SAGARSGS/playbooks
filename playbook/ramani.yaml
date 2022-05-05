@@ -1,0 +1,21 @@
+---
+- name: ramani is very clever girl
+  hosts: all
+  tasks: 
+   - name: git install ramani 
+     apt:
+       name: git
+       state: present
+     tags: nice
+   - name: maven install yaar ramini
+     apt: 
+      name: maven
+      state: present
+     tags: nice2
+   - name: tomcat9 install kar na ramani
+     apt:
+       name: tomcat9
+       state: present
+     tags: nice3
+  gather_facts: no
+...

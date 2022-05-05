@@ -1,0 +1,20 @@
+---
+- name: Practice exceptional/error handing
+  hosts: all
+  tasks:
+    - block:       
+      - name: install tommcat4
+        apt: 
+         name: tomcat4
+         state: present
+         update_cache: no
+      rescue:
+      - name: install tommcat9
+        apt:
+         name: tomcat9
+         state: present
+         update_cache: no
+...
+
+
+            

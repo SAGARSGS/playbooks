@@ -1,0 +1,19 @@
+
+---
+- name: installing different softwares
+  hosts: all
+  tasks:
+   - name: installing software
+     apt:
+       name: "{{item.a}}"
+       state: "{{item.b}}"
+       update_cache: "{{item.c}}"
+     with_items: 
+      - {a: tomcat9,b: absent,c: no}
+      - {a: tomcat9-admin,b: absent,c: no}
+      - {a: git,b: absent,c: no}
+      - {a: maven,b: absent,c: no}
+  become: yes
+  gather_facts: yes
+...
+

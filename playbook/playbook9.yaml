@@ -1,0 +1,36 @@
+---
+- name: use of "if conditions" 
+  hosts: all
+  vars:
+   - ad: 10
+  tasks: 
+    - name: user creation
+      user:
+        name: sagar15
+        password: sagar
+      register: a
+      when: ad == 10
+    - name: use debug module to capture the data
+      debug:
+         var: a
+    - name: use copy module 
+      copy:
+         src: /home/ubuntu/playbook/playbook4.yaml
+         dest: /home/ubuntu
+      register: b
+    - name: use debug module now
+      debug: 
+         var: b 
+    - name: use stat module to see o/p
+      stat:
+        path: /home/ubuntu/sagar
+      register: c
+    - name: use debug module
+      debug: 
+       var: c
+...
+
+
+
+
+

@@ -1,0 +1,10 @@
+---
+- name: configure kartoy tomcat9
+  hosts: group
+  tasks:
+     - name: install tomcat s/w
+       apt:
+         name: "{{a}}"
+         state: "{{b}}"
+         update_cache: "{{c}}"
+...

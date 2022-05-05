@@ -1,0 +1,13 @@
+---
+- name: include module practice with 4 child playbook
+  hosts: all
+  tasks:
+     - name: include module use
+       include: "{{item}}"
+       with_items:
+       - child_1_playbook.yaml
+       - child_2.yaml
+       - child_3.yaml
+       - child_4.yaml
+
+...

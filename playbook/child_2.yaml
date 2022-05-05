@@ -1,0 +1,6 @@
+---
+- name: use "copy" module
+  copy:
+    src: /home/ubuntu/child_1_playbook.yaml
+    dest: /tmp
+...

@@ -1,0 +1,44 @@
+---
+- name: Configure tomcat software
+  hosts: all
+  tasks: 
+   - name: install tomcat9
+     apt:
+       name: tomcat9
+       state: present
+       update_cache: yes
+   - name: install tomcat9-admin
+     apt:
+       name: tomcat9-admin
+       state: present
+       update_cache: yes
+   - name: copy tomcat credential
+     copy: 
+       src: /etc/tomcat-users.xml
+       dest: /etc/tomcat9
+   - name: restarted with service module
+     service: 
+       name: tomcat9
+       state: restarted
+   - name: replace module to change port number
+     replace: 
+       regexp: 8080
+       replace: 9090
+       path: /etc/tomcat9/server.xml
+   - name: service module to restart tomcat
+     service:
+       name: tomcat9
+       state: restarted
+   - name: pause for few minutes
+     pause:
+       minutes: 1 
+   - name: uri module to check tomcat url
+     uri:
+       url: http://172.31.9.188:9090
+   - name: uri module to check tomcat url
+     uri:
+       url: http://172.31.6.175:9090
+...
+
+      
+        

@@ -1,0 +1,10 @@
+---
+- name: uninstalling git software
+  hosts: 172.31.9.188
+  tasks:
+      - name: removing git software
+        apt:
+           name: "{{a}}"
+           state: "{{b}}"
+           update_cache: "{{c}}"
+...

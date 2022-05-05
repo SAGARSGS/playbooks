@@ -1,0 +1,16 @@
+---
+- name: stat debug and register things practice
+  hosts: all
+  tasks:
+    - name: use stat module to check f1 folder is ther or not. if not create
+      stat:
+        path: /tmp/f2
+      register: a
+      
+    - name: debug module to capture a variable data 
+      debug: 
+        var: a
+      when: a.stat.exists == true
+
+   
+...

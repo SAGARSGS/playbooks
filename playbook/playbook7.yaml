@@ -1,0 +1,30 @@
+---
+- name: configuring softwares with different variables
+  hosts: all
+  tasks: 
+   - name: chalo practice karate hay
+     apt:
+        name: "{{item.a}}"
+        state: "{{item.b}}"
+        update_cache: "{{item.c}}"
+     with_items:
+        - {a: tomcat9,b: present,c: no}
+        - {a: git,b: present,c: no}
+        - {a: maven,b: present,c: no}
+        - {a: apache2,b: present,c: no}
+     tags: na
+- name: use file command
+  hosts: all
+  tasks: 
+   - name: file for deleting
+     file:
+        name: /tmp/deletit
+        state: touch
+  become: yes
+  gather_facts: no
+  
+
+
+
+
+        

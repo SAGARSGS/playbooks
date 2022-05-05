@@ -1,0 +1,67 @@
+---
+- name: installing softwares to run cicd in ansible
+  hosts: all
+  tasks:
+     - name: use apt
+       apt:
+        name: "{{item.a}}"
+        state: present
+        update_cache: "{{item.b}}"
+       with_items:
+       - {a: openjdk-8-jdk,b: yes}  
+       - {a: git,b: no}
+       - {a: maven,b: no}
+       - {a: tomcat9,b: no}
+       - {a: tomcat9-admin,b: no}
+- name: perform cont.downloads & cont. build
+  hosts: dev
+  tasks:
+    - name: git downloads the code 
+      git:
+        repo: https://github.com/SAGARSGS/java1.git
+        dest: mygit1
+    - name: build code
+      shell: cd mygit1;mvn package
+    - name: send artifacts to controller fetch
+      fetch:
+        src: mygit1/webapp/target/webapp.war
+        dest: artifats
+- name: perform deploy and test in qa
+  hosts: qa
+  tasks:
+    - name: send arifacts to qa server
+      copy:
+         src: /home/ubuntu/artifats/172.31.21.221/mygit/webapp/target/webapp.war
+         dest: /var/lib/tomcat9/webapps/sagar12.war
+    - name: test and execute selenium code
+      git:
+         repo: https://github.com/intelliqittrainings/FunctionalTesting.git
+         dest: sd
+    - name: execute code
+      shell: java -jar /home/ubuntu/sd/testing.jar
+- name: delevery 
+  hosts: prod
+  tasks:
+    - name: send arifacts to prod server
+      copy:
+         src: /home/ubuntu/artifats/172.31.21.221/mygit/webapp/target/webapp.war
+         dest: /var/lib/tomcat9/webapps/sagar1.war
+
+   
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,6 @@
+---
+- name: use git module
+  git:
+    repo: https://github.com/SAGARSGS/git2.git
+    dest: /tmp/mygit
+...

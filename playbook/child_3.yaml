@@ -1,0 +1,10 @@
+---
+- name: use file module
+  file:
+     name: /home/ubuntu/include
+     state: touch
+     mode: 667
+     group: ubuntu
+     owner: root
+...
+

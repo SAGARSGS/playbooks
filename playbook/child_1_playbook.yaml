@@ -1,0 +1,6 @@
+---
+- name: use "user" moddule
+  user:
+     name: sagar
+     password: sagar
+...

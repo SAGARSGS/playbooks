@@ -1,0 +1,20 @@
+---
+- name: practicing loops  (with_items and with_sequences)
+  hosts: all
+  tasks: 
+    - name: installing tomcat9 s/w
+      apt:
+         name: "{{item}}"
+         state: present
+         update_cache: no
+      with_items:
+       - tomcat9
+       - git
+       - apache2
+       - maven
+       - firewalld
+      tags: item   
+  gather_facts: no
+  become: yes
+
+...   

@@ -1,0 +1,14 @@
+---
+- name: configuring tomcat9
+  hosts: all
+  tasks:
+    - name: tomcat9 installation
+      apt:
+       name: tomcat9
+       state: present
+    - name: tomcat9-admin
+      apt:
+       name: tomcat9-admin
+       state: present
+...
+

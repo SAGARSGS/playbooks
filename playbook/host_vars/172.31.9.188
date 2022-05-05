@@ -1,0 +1,5 @@
+---
+ a: git
+ b: absent
+ c: no
+...

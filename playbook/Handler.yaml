@@ -1,0 +1,30 @@
+---
+- name: lets learn about handler first
+  hosts: all
+  tasks: 
+   - name: install tomcat9
+     apt: 
+       name: tomcat9
+       state: present
+       update_cache: no
+     notify: if u do changes into above/notify module then only handler can work.
+   - name: git install
+     apt:
+       name: git
+       state: present
+     notify: xyz   
+   - name: install maveen
+     apt:
+       name: maven
+       state: present
+  handlers: 
+   - name: if u do changes into above/notify module then only handler can work.    
+     service:
+       name: tomcat9
+       state: stopped 
+   - name: xyz
+     apt:
+       name: apache2
+       state: present  
+...
+

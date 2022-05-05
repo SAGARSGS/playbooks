@@ -1,0 +1,15 @@
+---
+- name: configure git s/w
+  hosts: group
+  vars: 
+   - a: git
+   - b: present
+   - c: no
+  tasks:
+     - name: install git s/w
+       apt: 
+         name: "{{a}}"
+         state: "{{b}}"
+         update_cache: "{{c}}"
+...
+

@@ -1,0 +1,47 @@
+---
+- name: just for practice purpose ok
+  hosts: all
+  tasks:
+     - name: download jenkins file
+       get_url: 
+          url: https://get.jenkins.io/war-stable/2.332.2/jenkins.war
+          dest: /home/ubuntu
+     - name: Pause
+       pause:
+        minutes: 1
+     - name: fetch module copy from MN to Ansible
+       fetch:
+          src: jenkins.war
+          dest: /tmp
+     - name: copying from ansible to MN
+       copy:
+          src: /tmp/172.31.6.175
+          dest: /home/ubuntu/takeitBro2
+     - name: clonning work via git
+       git:
+          repo: https://github.com/SAGARSGS/git2.git
+          dest: /tmp/justgit
+     - name: file creating
+       file:
+          name: /home/ubuntu/ramesh
+          state: touch
+          owner: ubuntu
+          group: root
+          mode: 642
+     - name: directory creating
+       file:
+          name: /home/ubuntu/dir1
+          state: directory
+          owner: ubuntu
+          group: root
+          mode: 642
+     - name: deleying file with name of ramesh
+       file:
+          name: /home/ubuntu/ramesh
+          state: absent
+     - name: user creation with name of Pandu
+       user:
+          name: /home/ubuntu/Pandu
+          password: sagarbhai
+...
+
